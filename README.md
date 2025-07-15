@@ -1,3 +1,128 @@
+# CYP3A4 Enzyme‑Inhibition Prediction Platform
+
+A lightweight React application that demonstrates a full end‑to‑end cheminformatics workflow — from **CSV upload** through **feature engineering**, **model training & comparison**, to **test‑set prediction** and **submission‑file export**.
+
+> **Why?** CYP3A4 is the most versatile human cytochrome P450 isoform, responsible for the metabolism of \~50 % of marketed drugs. Rapidly screening compounds for CYP3A4 inhibition helps flag potential DDIs early in the discovery pipeline.
+
+---
+
+\## ✨ Key Features
+
+| Module | Highlights |
+| --------| -----------|
+\| **Data Upload** | Accepts `train.csv` and `test.csv` files (ID, SMILES, ±Inhibition%). Instant preview of first 5 rows. |
+\| **Feature Engineering** | Interactive controls for Morgan‑fingerprint *bits* (1024‑4096), *radius* (1‑3), and *normalisation* (min‑max / z‑score / robust). |
+\| **Model Training** | One‑click training of four regressors (Bayesian Ridge, Random Forest, Lasso, LightGBM) with a progress bar and metric table (RMSE, MAE, R², MAPE). |
+\| **Prediction** | Generates mock predictions for the test set and exports a Kaggle‑style `submission.csv`. |
+\| **UI/UX** | Pure React + inline CSS (no external CSS‑in‑JS lib). Icons by **lucide‑react**.
+
+---
+
+\## 🗂 Project Structure
+
+```text
+root
+├─ src/
+│  ├─ CYP3A4PredictionApp.tsx   ← single‑file application
+│  └─ main.tsx / index.tsx       ← your React entry (Vite/CRA)
+├─ public/
+│  └─ ...                        ← static assets
+├─ package.json
+└─ tsconfig.json
+```
+
+---
+
+\## 🚀 Getting Started
+
+\### Prerequisites
+
+* **Node ≥ 18 LTS**
+* pnpm / Yarn / npm (your choice)
+
+\### Installation & Dev Server
+
+```bash
+# clone
+$ git clone https://github.com/your‑org/cyp3a4‑prediction.git
+$ cd cyp3a4‑prediction
+
+# install deps
+$ pnpm install        # or: yarn / npm install
+
+# start Vite / CRA dev server
+$ pnpm dev            # or: yarn dev / npm start
+```
+
+Visit **[http://localhost:5173](http://localhost:5173)** (Vite default) and play with the app.
+
+\### Build for Production
+
+```bash
+$ pnpm build          # outputs to /dist
+$ pnpm preview        # optional local preview
+```
+
+---
+
+\## 📄 CSV Format
+
+\### Training (`train.csv`)
+
+```csv
+ID,Canonical_Smiles,Inhibition
+CMPD0001,CC(C)OC1=CC=CC=C1C(=O)O,78.3
+CMPD0002,CCN(CC)CCCC(C)NC1=NC=NC2=C1N=CN2,12.4
+…
+```
+
+\### Test (`test.csv`)
+
+```csv
+ID,Canonical_Smiles
+TST0001,N#CC1=CC=CC=C1C(=O)NCC=C
+TST0002,COC1=CC=C(C=C1)C(=O)NCCN
+…
+```
+
+---
+
+\## 🔬 Extending the App
+
+1. **Plug in RDKit.js** or an API endpoint to compute real fingerprints.
+2. Swap the mock training loop with *scikit‑learn* service calls or *PyCaret* cloud functions.
+3. Add extra metrics (Spearman, Kendall), cross‑validation controls, or hyper‑parameter search (e.g. Optuna).
+4. Deploy to **Vercel**, **Netlify**, or **GitHub Pages**.
+
+---
+
+\## 🤝 Contributing
+
+Pull requests are welcome! Please open an issue first to discuss major changes.
+
+```bash
+# lint & type‑check
+$ pnpm lint  # eslint + prettier
+$ pnpm type  # tsc --noEmit
+```
+
+---
+
+\## 📜 License
+
+MIT © 2025 *Your Name / Lab*
+
+---
+
+\### 中文快速指南  🀄️
+
+1. 将 `train.csv`、`test.csv` 放到本地磁盘后，点击 **Data Upload** 导入。
+2. 在 **Feature Engineering** 中调整指纹长度、半径和归一化方法。
+3. 切换到 **Model Training**，点击 *Train & Compare Models*，等待进度条完成。
+4. 前往 **Prediction** 生成并下载 `submission.csv`。
+
+祝使用顺利！
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
